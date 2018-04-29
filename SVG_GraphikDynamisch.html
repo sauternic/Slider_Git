@@ -1,0 +1,69 @@
+<!doctype html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Test2</title>
+    <style>
+        * {
+            margin: 0;
+        }
+
+        svg {
+            border: 1px solid black;
+            background-color: aqua;
+        }
+    </style>
+
+    <script>
+        'use strict';
+        window.onerror = function (e) { alert(e); }
+
+
+        function geladen() {
+            var button = document.getElementById('button');
+            button.addEventListener('click', button_click, false);
+
+        }
+
+        function button_click(params) {
+            //Rechteck Dynamisch Erzeugen
+            var svgNS = "http://www.w3.org/2000/svg";
+            var rect = document.createElementNS(svgNS, "rect");
+
+            rect.setAttribute('x', '500');
+            rect.setAttribute('y', '200');
+            rect.setAttribute('width', '500');
+            rect.setAttribute('height', '300');
+            rect.setAttribute('fill', 'red');
+            rect.setAttribute('stroke', '#000000');
+            rect.setAttribute('stroke-width', '4');
+            // Event Handler zuweisen.
+            rect.addEventListener('dragstart', e => e.preventDefault(), false)
+            rect.addEventListener('mousemove', mouseMove, false);
+            svg.appendChild(rect);
+
+        }
+
+        var AnfangX, AnfangY;
+        function mouseMove(e) {
+            //Nur wenn left Button gedrückt
+            if (e.buttons === 1) {
+                //Auslesen der Ausgangsposition
+                AnfangX = parseInt(this.getAttribute('x'), 10)
+                AnfangY = parseInt(this.getAttribute('y'), 10)
+                //Setzen der neuen Position
+                    this.setAttribute('x', AnfangX += e.movementX);
+                    this.setAttribute('y', AnfangY += e.movementY);
+            }
+
+        }
+    </script>
+</head>
+
+<body onload="geladen()">
+    <svg id="svg" xmlns="http://www.w3.org/2000/svg" width="1500" height="800">
+    </svg>
+    <input id="button" type="button" value="Einfügen" />
+</body>
+
+</html>

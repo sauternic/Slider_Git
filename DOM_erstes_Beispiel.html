@@ -1,0 +1,36 @@
+<!doctype html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Test2</title>
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 50px;
+        }
+    </style>
+
+    <script>
+        'use strict';
+        window.onerror = e => alert(e);
+        function geladen(){
+            
+        }
+    </script>
+</head>
+
+<body onload="geladen()">
+
+<p id="a1">Erster Absatz</p>
+<p id="a2">Zweiter Absatz</p>
+<p id="a3" style="text-align: left">Dritter Absatz</p>
+    <script>
+        var absatz3 = document.getElementById('a3');
+        document.write('Über ID: Inhalt: ' + absatz3.firstChild.nodeValue + ', Style: ' + absatz3.getAttribute('style') + '<br>');
+        
+        var absatz1 = document.getElementsByTagName('p')[0];
+        document.write('Über Tag: Inhalt: ' + absatz1.firstChild.nodeValue + ', Style: ' + absatz1.getAttribute('style'));
+    </script>
+</body>
+
+</html>
